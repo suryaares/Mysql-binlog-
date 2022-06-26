@@ -1,6 +1,10 @@
 # Mysql-binlog-replication-to-snowflake
 Fetching binlog from mysql using python
 
+Below are the packages for this code
+
+
+
 from pymysqlreplication import BinLogStreamReader
 from pymysqlreplication import row_event
 import configparser
@@ -22,6 +26,7 @@ from sqlalchemy import create_engine
 from snowflake.sqlalchemy import URL
 import re
 import snowflake.connector
+
 while True:
     conn = pymysql.connect(host="XXXXXXXXX", user="XXXX", password="XXXXX", port=3306, db="XXXXX")
     mysql_settings = {'host': 'XXXXX',
@@ -29,6 +34,7 @@ while True:
                       'user': 'XXXX',
                       'passwd': 'XXXXXX'
                       }
+                      
     stream = BinLogStreamReader(connection_settings=mysql_settings, server_id=100,
                                 only_events=[row_event.WriteRowsEvent])
     log_ist_events = []
